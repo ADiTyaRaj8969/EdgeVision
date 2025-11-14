@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeVision | Professional Image Edge Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="eye-logo">
+                    <div class="eye">
+                        <div class="pupil"></div>
+                    </div>
+                </div>
+                <span>EdgeVision</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#algorithms" class="nav-link">Algorithms</a>
+                <a href="#upload" class="nav-link">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Professional Edge Detection</span>
+                <br>Advanced Image Processing
+            </h1>
+            <p class="hero-subtitle">Transform your images with cutting-edge computer vision algorithms. Detect edges with precision and clarity.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Algorithms</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">⚡</div>
+                    <div class="stat-label">Fast Processing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main App -->
+    <div class="container">
+        <!-- Upload Section -->
+        <div class="card upload-section" id="upload">
+            <div class="card-header">
+                <div class="header-content">
+                    <i class="fas fa-cloud-upload-alt header-icon"></i>
+                    <div>
+                        <h2 class="card-title">Upload Your Image</h2>
+                        <p class="card-subtitle">Get started by uploading your image for edge detection</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-content">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h3 class="upload-title">Drag & Drop Your Image</h3>
+                    <p class="upload-text">or click to browse files</p>
+                    <p class="upload-hint">Supports JPG, PNG, WEBP • Max 10MB</p>
+                    <div class="supported-formats">
+                        <span class="format-tag">JPG</span>
+                        <span class="format-tag">PNG</span>
+                        <span class="format-tag">WEBP</span>
+                        <span class="format-tag">GIF</span>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" class="file-input" accept="image/*">
+                <button class="btn btn-outline" id="browseBtn">
+                    <i class="fas fa-folder-open"></i> Browse Files
+                </button>
+            </div>
+
+            <!-- Image Preview -->
+            <div class="image-preview" id="imagePreview" style="display: none;">
+                <div class="preview-header">
+                    <h3>Image Preview</h3>
+                    <button class="btn btn-sm btn-text" id="changeImageBtn">
+                        <i class="fas fa-sync"></i> Change
+                    </button>
+                </div>
+                <div class="preview-container">
+                    <img id="originalImage" src="#" alt="Original preview">
+                    <div class="preview-info">
+                        <div class="info-item">
+                            <span class="info-label">File Name:</span>
+                            <span id="fileName" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">File Size:</span>
+                            <span id="fileSize" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Dimensions:</span>
+                            <span id="fileDimensions" class="info-value">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Algorithm Selection -->
+            <div class="algorithms-section" id="algorithms">
+                <h3 class="section-title">Choose Detection Algorithm</h3>
+                <p class="section-subtitle">Select the best algorithm for your image type</p>
+                
+                <div class="algorithm-cards">
+                    <div class="algorithm-card" data-algorithm="canny">
+                        <div class="algorithm-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </div>
+                        <div class="algorithm-content">
+                            <h4>Canny Edge Detector</h4>
+                            <p>Multi-stage algorithm with optimal edge detection and noise reduction</p>
+                            <div class="algorithm-stats">
+                                <span class="stat-tag">Precision: High</span>
+                                <span class="stat-tag">Noise: Low</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-selector">
+                            <input type="radio" name="algorithm" value="canny" id="canny" checked>
+                            <label for="canny"></label>
+                        </div>
+                    </div>
+
+                    <div class="algorithm-card" data-algorithm="sobel">
+                        <div class="algorithm-icon">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                        <div class="algorithm-content">
+                            <h4>Sobel Operator</h4>
+                            <p>Gradient-based detection using convolution kernels for fast processing</p>
+                            <div class="algorithm-stats">
+                                <span class="stat-tag">Speed: Fast</span>
+                                <span class="stat-tag">Performance: Good</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-selector">
+                            <input type="radio" name="algorithm" value="sobel" id="sobel">
+                            <label for="sobel"></label>
+                        </div>
+                    </div>
+
+                    <div class="algorithm-card" data-algorithm="laplacian">
+                        <div class="algorithm-icon">
+                            <i class="fas fa-circle-notch"></i>
+                        </div>
+                        <div class="algorithm-content">
+                            <h4>Laplacian of Gaussian</h4>
+                            <p>Second-derivative operator for fine edge detection in high-quality images</p>
+                            <div class="algorithm-stats">
+                                <span class="stat-tag">Detail: High</span>
+                                <span class="stat-tag">Quality: Best</span>
+                            </div>
+                        </div>
+                        <div class="algorithm-selector">
+                            <input type="radio" name="algorithm" value="laplacian" id="laplacian">
+                            <label for="laplacian"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sensitivity Controls -->
+            <div class="controls-section">
+                <div class="control-header">
+                    <h3 class="section-title">Adjust Sensitivity</h3>
+                    <div class="sensitivity-display">
+                        <span class="sensitivity-label">Current Level:</span>
+                        <div class="sensitivity-value">
+                            <span id="thresholdValue">5</span>
+                            <span class="sensitivity-unit">/10</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sensitivity-controls">
+                    <div class="range-container">
+                        <input type="range" id="thresholdSlider" class="range-slider" min="1" max="10" value="5" step="1">
+                        <div class="range-labels">
+                            <span>Low</span>
+                            <span>Medium</span>
+                            <span>High</span>
+                        </div>
+                    </div>
+                    <div class="sensitivity-presets">
+                        <button class="preset-btn" data-value="3">Soft</button>
+                        <button class="preset-btn active" data-value="5">Balanced</button>
+                        <button class="preset-btn" data-value="7">Strong</button>
+                        <button class="preset-btn" data-value="10">Maximum</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-section">
+                <button class="btn btn-primary btn-lg" id="detectBtn" disabled>
+                    <i class="fas fa-bolt"></i>
+                    <span>Detect Edges</span>
+                    <div class="btn-loading" id="detectLoading">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i>
+                    Reset
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="header-content">
+                        <i class="fas fa-chart-line header-icon"></i>
+                        <div>
+                            <h2 class="card-title">Detection Results</h2>
+                            <p class="card-subtitle">Compare original image with edge detection results</p>
+                        </div>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-outline" id="downloadBtn">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-text" id="newDetectionBtn">
+                            <i class="fas fa-plus"></i> New Detection
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Results Comparison -->
+                <div class="results-comparison">
+                    <div class="comparison-item">
+                        <div class="comparison-header">
+                            <h3>Original Image</h3>
+                            <span class="image-badge">Input</span>
+                        </div>
+                        <div class="image-comparison-wrapper">
+                            <img id="originalImageResult" src="#" alt="Original">
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <div class="comparison-header">
+                            <h3>Edge Detection</h3>
+                            <span class="image-badge success" id="algorithmBadge">Canny</span>
+                        </div>
+                        <div class="image-comparison-wrapper">
+                            <img id="processedImage" src="#" alt="Processed">
+                            <div class="result-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Processing Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Stats -->
+                <div class="results-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="processingTime">-</div>
+                            <div class="stat-label">Processing Time</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="imageSize">-</div>
+                            <div class="stat-label">Image Size</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="algorithmUsed">-</div>
+                            <div class="stat-label">Algorithm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section" id="features">
+            <div class="card">
+                <h2 class="section-title">Why Choose EdgeVision?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Process images in milliseconds with optimized algorithms and efficient processing</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>High Precision</h3>
+                        <p>Advanced edge detection with minimal noise and maximum accuracy</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Privacy First</h3>
+                        <p>Your images are processed locally and never stored on our servers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner-large"></div>
+            <h3>Processing Your Image</h3>
+            <p>Applying edge detection algorithm...</p>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <span class="progress-text" id="progressText">Initializing...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 EdgeVision | Developed by Aditya Raj</p>
+            <p>Advanced Image Edge Detection Tool for Computer Vision Applications</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
